@@ -5,12 +5,12 @@ const titleWebhook = new WebhookClient({ id: titleWebhookId, token: titleWebhook
 
 export default function handler(req, res) {
   let data;
-  if (req.query.debug) {
+  if (!req.query.data) {
     data = {
-      "title": "title",
-      "target": "dev",
-      "player": "not dev",
-      "action": "not added"
+      "title": "Testing_Title",
+      "target": "Testing_Target",
+      "player": "Testing_Player",
+      "action": "Testing_Action"
     }
   } else {
     data = JSON.parse(req.query.data);
