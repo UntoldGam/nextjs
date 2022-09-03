@@ -4,8 +4,14 @@ const { titleWebhookId, titleWebhookToken } = process.env;
 const titleWebhook = new WebhookClient({ id: titleWebhookId, token: titleWebhookToken });
 
 export default function handler(req, res) {
-  let data = req.query.data;
-  data = JSON.parse(data);
+  //let data = req.query.data;
+ // data = JSON.parse(data);
+  let data = {
+    "title": "title",
+    "target": "dev",
+    "player": "not dev",
+    "action": "added"
+  }
 
   let title = data.title;
   let target = data.target;
@@ -24,7 +30,9 @@ export default function handler(req, res) {
 
   titleWebhook.send({
     embeds: [embed]
-  });
-  res.status(200).json({ "result": "Log Created and Sent" })
+  }).then(() => {
+    res.status(200).json({ "result": "Log Created and Sent" })
+  } )
+  
   //res.status(200).json({ name: 'John Doe' })
 }
